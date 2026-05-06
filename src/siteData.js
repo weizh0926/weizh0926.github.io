@@ -28,6 +28,21 @@ export const researchInterests = [
 
 export const newsItems = [
   {
+    date: "Apr 2026",
+    text: "Launched Mantle: agent reliability enforced during generation through trusted sources, quotes, and evidence.",
+    href: "/blog/post/mantle-factual-reliable-agents"
+  },
+  {
+    date: "Apr 2026",
+    text: "Seeking joint ventures with payment companies to help merchants prepare for agentic commerce.",
+    href: "/blog/post/agentic-commerce-joint-ventures"
+  },
+  {
+    date: "Mar 2026",
+    text: "Working with an S&P 500 consumer electronics manufacturer to design a safe, privacy-preserving AI agent platform.",
+    href: "/blog/post/enterprise-safe-privacy-agent-platform"
+  },
+  {
     date: "Dec 2022",
     text: "IEEE SLT 2022 work on speech emotion recognition with complementary acoustic representations."
   },

@@ -129,7 +129,13 @@ function HomePage() {
             {newsItems.map((item) => (
               <li key={item.date + item.text.slice(0, 24)}>
                 <span className="news-date">{item.date}</span>
-                <span className="news-body">{item.text}</span>
+                {item.href ? (
+                  <Link className="news-body news-link" to={item.href}>
+                    {item.text}
+                  </Link>
+                ) : (
+                  <span className="news-body">{item.text}</span>
+                )}
               </li>
             ))}
           </ul>

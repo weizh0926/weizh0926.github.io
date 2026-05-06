@@ -482,6 +482,23 @@ a:hover {
   line-height: 1.55;
 }
 
+.news-link {
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.news-link:hover {
+  color: var(--link-hover);
+  border-bottom-color: rgba(90, 79, 70, 0.35);
+}
+
+.news-link:focus-visible {
+  outline: 2px solid var(--btn);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
 .section-split {
   display: grid;
   gap: 2rem;
