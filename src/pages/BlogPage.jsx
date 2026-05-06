@@ -16,20 +16,23 @@ function BlogPage() {
           </Link>
           <SiteNav theme="light" />
         </div>
-        <div className="blog-masthead-intro">
-          <h1 className="blog-page-title">Blog</h1>
-          <p className="blog-page-lede">
-            Short notes across areas I work in and watch closely. Posts are Markdown in{" "}
-            <code className="inline-code">content/blogs</code>; assign a{" "}
-            <code className="inline-code">domain</code> in frontmatter to file a piece under a topic
-            below.
-          </p>
+        <div className="blog-masthead-grid">
+          <div className="blog-masthead-intro">
+            <h1 className="blog-page-title">Blog</h1>
+            <p className="blog-page-lede">
+              Notes on research and applied AI, grouped by topic. New posts live as Markdown under{" "}
+              <code className="inline-code">content/blogs</code>.
+            </p>
+          </div>
           <nav className="blog-toc" aria-label="Topics on this page">
-            {BLOG_DOMAINS.map((d) => (
-              <a key={d.id} href={`#${d.id}`}>
-                {d.title}
-              </a>
-            ))}
+            <span className="blog-toc-heading">On this page</span>
+            <ul className="blog-toc-list">
+              {BLOG_DOMAINS.map((d) => (
+                <li key={d.id}>
+                  <a href={`#${d.id}`}>{d.title}</a>
+                </li>
+              ))}
+            </ul>
           </nav>
         </div>
       </header>
@@ -38,36 +41,38 @@ function BlogPage() {
         {BLOG_DOMAINS.map((domain) => {
           const posts = blogs.filter((p) => p.domain === domain.id);
           return (
-            <section key={domain.id} id={domain.id} className="section domain-section">
-              <header className="section-head">
-                <h2 className="section-title">{domain.title}</h2>
-                <p className="section-deck">{domain.blurb}</p>
+            <section key={domain.id} id={domain.id} className="blog-topic">
+              <header className="blog-topic-head">
+                <h2 className="blog-topic-title">{domain.title}</h2>
+                <p className="blog-topic-deck">{domain.blurb}</p>
               </header>
               {posts.length === 0 ? (
                 <p className="domain-empty">
-                  No posts filed under this topic yet. Add one with{" "}
-                  <code className="inline-code">domain: {domain.id}</code> in the frontmatter.
+                  Nothing here yet. Use{" "}
+                  <code className="inline-code">domain: {domain.id}</code> in the post frontmatter.
                 </p>
               ) : (
-                <>
-                  {posts.length > 0 ? (
-                    <div className="card-grid card-grid-blogs">
-                      {posts.map((post) => (
-                        <article className="blog-card" key={post.id}>
-                          <p className="meta">
-                            <span>{post.date}</span>
-                            {post.tags?.length ? <span>{post.tags.join(" · ")}</span> : null}
-                          </p>
-                          <h3 className="blog-title">{post.title}</h3>
-                          <p className="excerpt">{post.excerpt}</p>
-                          <Link className="text-link blog-card-more" to={`/blog/post/${post.id}`}>
-                            Read
-                          </Link>
-                        </article>
-                      ))}
-                    </div>
-                  ) : null}
-                </>
+                <div className="card-grid card-grid-blogs card-grid-blogs--blog-page">
+                  {posts.map((post) => (
+                    <Link
+                      key={post.id}
+                      className="blog-card blog-card--tile"
+                      to={`/blog/post/${post.id}`}
+                    >
+                      <div className="blog-card-body">
+                        <p className="meta">
+                          <span>{post.date}</span>
+                          {post.tags?.length ? <span>{post.tags.join(" · ")}</span> : null}
+                        </p>
+                        <h3 className="blog-title">{post.title}</h3>
+                        <p className="excerpt">{post.excerpt}</p>
+                      </div>
+                      <div className="blog-card-hover" aria-hidden="true">
+                        <span className="blog-card-hover-text">Read more</span>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
               )}
             </section>
           );

@@ -223,15 +223,24 @@ function HomePage() {
                   .filter((post) => !post.featured)
                   .slice(0, 6)
                   .map((post) => (
-                  <article className="blog-card" key={post.id}>
-                    <p className="meta">
-                      <span>{post.date}</span>
-                      {post.tags?.length ? <span>{post.tags.join(" · ")}</span> : null}
-                    </p>
-                    <h3 className="blog-title">{post.title}</h3>
-                    <p className="excerpt">{post.excerpt}</p>
-                  </article>
-                ))}
+                    <Link
+                      key={post.id}
+                      className="blog-card blog-card--tile"
+                      to={`/blog/post/${post.id}`}
+                    >
+                      <div className="blog-card-body">
+                        <p className="meta">
+                          <span>{post.date}</span>
+                          {post.tags?.length ? <span>{post.tags.join(" · ")}</span> : null}
+                        </p>
+                        <h3 className="blog-title">{post.title}</h3>
+                        <p className="excerpt">{post.excerpt}</p>
+                      </div>
+                      <div className="blog-card-hover" aria-hidden="true">
+                        <span className="blog-card-hover-text">Read more</span>
+                      </div>
+                    </Link>
+                  ))}
               </>
             )}
           </div>
