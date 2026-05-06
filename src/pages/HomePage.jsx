@@ -27,8 +27,8 @@ function HomePage() {
   }, [location]);
 
   return (
-    <div className="page" id="top">
-      <header className="hero">
+    <div className="page page--home" id="top">
+      <header className="hero hero--banner">
         <div className="hero-bar">
           <Link className="wordmark" to="/">
             WZ
